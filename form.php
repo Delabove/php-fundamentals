@@ -80,7 +80,8 @@ if(isset($_POST['submit'])) {
         <option value="it">Italian</option>
     </select> <br> <br>
     Comments: <textarea name="comments" ></textarea><br><br>
-<!--    <input type="checkbox" name="tc" value="ok">-->
+<!--
+ <input type="checkbox" name="tc" value="ok">-->
 <!--    I accept the T&amp;C <br><br>--><!--    I accept the T&amp;C <br><br>-->
     <input type="submit" name="submit" value="SUBMIT">
 
