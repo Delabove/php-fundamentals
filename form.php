@@ -108,3 +108,12 @@ if(isset($_POST['submit'])) {
 
 </form>
 
+<!--Notes-->
+
+<!---Created form-->
+<!---Printed the results after submission-->
+<!---Escaped with htmlspecialchars for security-->
+<!---set conditions for the filling out of the form ex: if field is set, do one thing, if not, do another.-->
+<!--keep fields prefilled when a field or fields hve been skipped over-->
+
+<!----->
