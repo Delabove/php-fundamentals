@@ -1,79 +1,62 @@
 
 <?php
 
-//initialize field variables
+include 'db_connection.php';
+
 $name ='';
 $password='';
 $gender='';
 $color='';
-$languages=[];
-$comments='';
-$tc='';
-
-//if the form has been field out, populate those fields with the data
 
 if(isset($_POST['submit'])) {
-//    echo htmlspecialchars($_POST['searchterm'], ENT_QUOTES);
     $ok = true;
 
         if (!isset($_POST['name']) || $_POST['name'] === '') {
             $ok = false;
+            error_log("There is something wrong!", 0);
         } else {
+            error_log("There is something wrong!", 1);
             $name = $_POST['name'];
         };
 
         if (!isset($_POST['password']) || $_POST['password'] === '') {
+            error_log("There is something wrong!", 2);
             $ok = false;
         } else {
             $password = $_POST['password'];
         };
         if (!isset($_POST['gender']) || $_POST['gender'] === '') {
+            error_log("There is something wrong!", 3);
             $ok = false;
         } else {
             $gender = $_POST['gender'];
         };
         if (!isset($_POST['color']) || $_POST['color'] === '') {
+            error_log("There is something wrong!", 4);
             $ok = false;
         } else {
             $color = $_POST['color'];
         };
-        if (!isset($_POST['languages']) || !is_array($_POST['languages']) || count($_POST['languages']) == 0) {
-            $ok = false;
-        } else {
-            $languages = $_POST['languages'];
-        };
-        if (!isset($_POST['comments']) || $_POST['comments'] === '') {
-            $ok = false;
-        } else {
-            $comments = $_POST['comments'];
-        };
-        if (!isset($_POST['tc']) || $_POST['tc'] === '') {
-            $ok = false;
-        } else {
-            $tc = $_POST['tc'];
-        }
 
-    // output and escape everything with the html escape for security
+
+
     if($ok) {
+   $conn = OpenCon();
 
-        printf('Username: %s
-         <br>Password: %s
-         <br>Gender: %s
-         <br>Color: %s
-         <br>Languages: %s
-         <br>Comments: %s
-         <br>T&amp;C: %s',
-            htmlspecialchars($name, ENT_QUOTES),
-            htmlspecialchars($password, ENT_QUOTES),
-            htmlspecialchars($gender, ENT_QUOTES),
-            htmlspecialchars($color, ENT_QUOTES),
-            htmlspecialchars(implode('', $languages), ENT_QUOTES),
-            htmlspecialchars($comments, ENT_QUOTES),
-            htmlspecialchars($tc, ENT_QUOTES));
-
-//        echo 'true';
+        $sql = sprintf(
+         "INSERT INTO users (name, gender, color) VALUES (
+         '%s', '%s', '%s')",
+            $conn ->real_escape_string($name),
+            $conn ->real_escape_string($gender),
+            $conn ->real_escape_string($color));
+            $conn->query($sql);
+        error_log("There is something wrong!", 5);
+            echo "User updated.";
+        error_log("There is something wrong!", 6);
+            CloseCon($conn);
     }
 }
+
 
     ?>
 
@@ -119,34 +102,8 @@ if(isset($_POST['submit'])) {
         }
         ?>>Blue</option>
     </select> <br><br>
-    Languages Spoken:
-    <select name="languages[]" multiple size="3">
-        <option value="en"<?php
-        if(in_array('en', $languages)){
-            echo ' selected';
-        }
-        ?>>English</option>
-        <option value="fr"<?php
-        if(in_array('fr', $languages)){
-            echo ' selected';
-        }
-        ?>>French</option>
-        <option value="it"<?php
-        if(in_array('it', $languages)){
-            echo ' selected';
-        }
-        ?>>Italian</option>
-    </select> <br> <br>
-    Comments: <textarea name="comments" > <?php echo htmlspecialchars($comments, ENT_QUOTES)?></textarea><br><br>
-    <input type="checkbox" name="tc" value="ok"<?php
-    if($tc === 'ok'){
-        echo ' checked';
-    }
-    ?>
 
-    >
-    I accept the T&amp;C <br><br>
-    <input type="submit" name="submit" value="SUBMIT">
+    <input type="submit" name="submit" value="REGISTER">
 
 </form>
 
