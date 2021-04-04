@@ -82,7 +82,7 @@ if(isset($_POST['submit'])) {
     action=""
     method="post">
 
-    Username: <input type="text" name="name"> <br><br>
+    Username: <input type="text" name="name" value="<?php echo htmlspecialchars($name, ENT_QUOTES)?>"> <br><br>
     Passwsord: <input type="password" name="password"><br><br>
     Gender:
         <input type="radio" name="gender" value="f">Female
@@ -101,7 +101,7 @@ if(isset($_POST['submit'])) {
         <option value="fr">French</option>
         <option value="it">Italian</option>
     </select> <br> <br>
-    Comments: <textarea name="comments" ></textarea><br><br>
+    Comments: <textarea name="comments" > <?php echo htmlspecialchars($comments, ENT_QUOTES)?></textarea><br><br>
     <input type="checkbox" name="tc" value="ok">
     I accept the T&amp;C <br><br>
     <input type="submit" name="submit" value="SUBMIT">
