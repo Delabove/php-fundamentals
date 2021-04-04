@@ -1,6 +1,11 @@
 <?php
+include 'db_connection.php';
 
-echo "test";
+$conn = OpenCon();
 
-echo $_POST["name"];
+
+
+echo "Connected Successfully";
+
+//echo $_POST["name"];
 
